@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Création d'une annonce
+{% endblock %}
+
+
+{# {% form_theme form _self %} #}
+{% form_theme form 'ad/_collection.html.twig' %}
+{% block body %}
+    <div class="container">
+        <h1>Créer une nouvelle annonce</h1>
+        {# {{ form(form) }} #}     
+        {{form_start(form)}}
+        {# <div class="form-group">
+            {{form_label(form.title)}}
+            {{form_widget(form.title, {
+                                        'attr':{
+                                            'class':'form-control',
+                                            'placeholder':'Titre de l\'annonce'
+                                            }
+                                      })
+            }}    
+        </div> #}
+        {{form_widget(form)}}
+        {# button:submit.btn.btn-primary #}
+        <button type="submit" class="btn btn-primary">Créer une annonce !</button>
+
+        {{form_end(form)}}
+    </div>
+
+{% endblock %}
+
+
+{% block javascripts %}
+    <script src="/js/ad.js"></script>
+
+{% endblock %}
+
+
+{# {% block form_row %}
+    {{dump()}}  c'est pour faire afficher les variables locales
+    <div class="from-group">
+        {{form_label(form)}}
+        {{form_widget(form)}}
+    </div>
+{% endblock %}
+
+
+{% block text_widget %}
+    <input type="text" name="{{full_name}}" id="{{id}}" class="form-control">
+{% endblock %} #}
+

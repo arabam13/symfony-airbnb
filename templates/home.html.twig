@@ -1,0 +1,153 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Bienvenue !
+{% endblock %}
+
+{% block body %}
+    <div class="container mt-3">
+         <div class="jumbotron">
+            <h1 class="display-3">Bienvenue sur SymBNB</h1>
+            <p class="lead">Nous voulons mettre en relation les voyageurs et les proprietaires qui veulent 
+                profiter des opportunités et gagner de l'argent en proposant leur bien à la location</p>
+            <hr class="my-4">
+            <p>Vous êtes voyageurs? Et vous voulez voir où vous allez vous loger pour vos prochains déplacements?</p>
+            <p class="lead">
+                <a class="btn btn-primary btn-lg" href="#" role="button">Voir les annonces</a>
+            </p>
+        </div>       
+
+        <h2 class="mb-3 mt-3">Nos appartements Star</h2>
+        
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card bg-light mb-3">
+                    <div class="card-header text-center">
+                        3 chambres, <strong>49 &euro; /nuit</strong> <br>
+                        <small>Pas encore noté</small>
+                    </div>
+                    <img src="http://placehold.it/1000x400" alt="Image de l'appetement"
+                            style="height:200px; width:100%; display:block">
+                    
+                    <div class="card-body">
+                        <h4 class="card-title">
+                            Appartement de Ouf!
+                        </h4>
+                        <p class="card-text">
+                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illum, architecto!
+                        </p>
+                        <a href="#" class="btn btn-secondary">En savoir plus</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card bg-light mb-3">
+                    <div class="card-header text-center">
+                        3 chambres, <strong>49 &euro; /nuit</strong> <br>
+                        <small>Pas encore noté</small>
+                    </div>
+                    <img src="http://placehold.it/1000x400" alt="Image de l'appetement"
+                            style="height:200px; width:100%; display:block">
+                    
+                    <div class="card-body">
+                        <h4 class="card-title">
+                            Appartement de Ouf!
+                        </h4>
+                        <p class="card-text">
+                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illum, architecto!
+                        </p>
+                        <a href="#" class="btn btn-secondary">En savoir plus</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card bg-light mb-3">
+                    <div class="card-header text-center">
+                        3 chambres, <strong>49 &euro; /nuit</strong> <br>
+                        <small>Pas encore noté</small>
+                    </div>
+                    <img src="http://placehold.it/1000x400" alt="Image de l'appetement"
+                            style="height:200px; width:100%; display:block">
+                    
+                    <div class="card-body">
+                        <h4 class="card-title">
+                            Appartement de Ouf!
+                        </h4>
+                        <p class="card-text">
+                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illum, architecto!
+                        </p>
+                        <a href="#" class="btn btn-secondary">En savoir plus</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="mb-3 mt-3">Nos Propriétaires Star</h2>
+
+        <div class="row">
+            <div class="col">
+                <div class="card border-secondary mb-3">
+                    <div class="card-body">
+                        <h4 class="card-title">
+                            Araba Maria
+                        </h4>
+
+                        <hr>
+
+                        <div class="card-text">
+                            <img src="http://placehold.it/64x64" alt="Avatar d'Araba"
+                                class='float-left mr-3'>
+                            <p>Lorem ipsum dolor sit amet.</p>
+                            <a href="#" class="btn btn-success float-right">En savoir plus!</a>
+
+                        </div>
+                    </div>
+                </div>            
+            </div>
+            <div class="col">
+                <div class="card border-secondary mb-3">
+                    <div class="card-body">
+                        <h4 class="card-title">
+                            Araba MERYEM
+                        </h4>
+
+                        <hr>
+
+                        <div class="card-text">
+                            <img src="http://placehold.it/64x64" alt="Avatar d'Araba"
+                                class='float-left mr-3'>
+                            <p>Lorem ipsum dolor sit amet.</p>
+                            <a href="#" class="btn btn-success float-right">En savoir plus!</a>
+
+                        </div>
+                    </div>
+                </div>            
+            </div>
+        </div>
+
+    </div>
+{% endblock %}
+
+
+{# <h1>{{ title }}</h1>
+    <a href="{{ path('hello_base') }}">Cliquer dessus</a>
+    <br><br>
+    <a href="{{ path('hello_a', {'prenom':'momo', 'age':'25'}) }}">Cliquer dessus (2) </a> #}
+
+    {# {% if age >=18 %}
+        <p>Vous êtes un adulte</p>
+    {% elseif age>=15 %}
+        <p>Vous êtes un adolescent</p>
+    {% else %}
+        <p>Vous êtes un enfant</p>
+    {% endif %}
+
+    {% for prenom, age in tableau %}
+        {% if loop.first %}
+            <strong><p>Itération n°{{loop.index0}} : {{prenom}} a {{age}} ans</strong>
+        {% elseif loop.last %}
+            <em>Itération n°{{loop.index0}} : {{prenom}} a {{age}} ans</em>
+        {% else %}
+            <p>Itération n°{{loop.index0}} : {{prenom}} a {{age}} ans</p>
+        {% endif %}
+    {% endfor %} #}
