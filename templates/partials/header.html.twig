@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="{{ path('homepage') }}">SymBNB !</a>
+    <a class="navbar-brand" href="{{ path('homepage') }}">ARABA</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03"
              aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -16,9 +16,33 @@
             
         </ul>
         <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="#" >Mon Compte</a>
-            </li>
+            {% if app.user %}
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" 
+                            id="accountDropdownLink">
+                        <img src="{{app.user.picture}}" alt="Avatar de {{app.user.fullName}}" 
+                            class="avatar avatar-mini">
+                        {{app.user.fullName}}
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" area-labelledby="accountDropdownLink">
+                        <a href="{{path('ads_create')}}" class="dropdown-item">Créer une annonce </a>
+
+                        <div class="dropdown-divider"></div>
+                        <a href="{{path('account_index')}}" class="dropdown-item">Mon compte</a>
+                        <a href="{{path('account_profile')}}" class="dropdown-item">Modifier mon profile</a>
+
+                        <div class="dropdown-divider"></div>
+                        <a href="{{path('account_logout')}}" class="dropdown-item">Deconnexion</a>
+                    </div>
+                </li>
+            {% else %}
+                <li class="nav-item">
+                    <a href="{{path('account_register')}}" class="nav-link">Inscription</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{path('account_login')}}" class="nav-link">Connexion</a>
+                </li>
+            {% endif %}
         </ul>
 
     </div>

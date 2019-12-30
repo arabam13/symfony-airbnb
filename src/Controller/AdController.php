@@ -18,6 +18,7 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 class AdController extends Controller
 {
     /**
+     * Permet d'afficher la liste des annnonces
      * @Route("/ads", name="ads_index")
      */
     public function index(AdRepository $repo)
@@ -52,9 +53,11 @@ class AdController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()){
             foreach($ad->getImages() as $image){
-                $image->setAd($ad);
+                $image->setAd($ad); //Attribuer le n° d'annonce de la classe instanciée à l'image parcourru 
                 $manager->persist($image);
             }
+
+            $ad->setAuthor($this->getUser());
 
             $manager->persist($ad);
             $manager->flush();

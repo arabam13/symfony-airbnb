@@ -69,6 +69,12 @@ class Ad
      */
     private $images;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="ads")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $author;
+
     public function __construct()
     {
         $this->images = new ArrayCollection();
@@ -189,7 +195,7 @@ class Ad
     {
         if (!$this->images->contains($image)) {
             $this->images[] = $image;
-            $image->setAd($this);
+            $image->setAd($this); // Rajouter le n° d'annonce (objet instancié) à l'image créée
         }
 
         return $this;
@@ -200,10 +206,22 @@ class Ad
         if ($this->images->contains($image)) {
             $this->images->removeElement($image);
             // set the owning side to null (unless already changed)
-            if ($image->getAd() === $this) {
-                $image->setAd(null);
+            if ($image->getAd() === $this) { 
+                $image->setAd(null); // Fixer le n° d'annonce (objet instancié) de l'image supprimé à NULL
             }
         }
+
+        return $this;
+    }
+
+    public function getAuthor(): ?User
+    {
+        return $this->author;
+    }
+
+    public function setAuthor(?User $author): self
+    {
+        $this->author = $author;
 
         return $this;
     }

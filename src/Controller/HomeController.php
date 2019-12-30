@@ -15,10 +15,10 @@ class HomeController extends Controller {
      * 
      * @return void
      */
-    public function hello($prenom="anonyme", $age=0){
-        return new Response("Bonjour ".$prenom. ". Vous avez ".$age." ans");
+    // public function hello($prenom="anonyme", $age=0){
+    //     return new Response("Bonjour ".$prenom. ". Vous avez ".$age." ans");
 
-    }
+    // }
 
 
     /**
@@ -26,19 +26,23 @@ class HomeController extends Controller {
      * @Route("/", name="homepage")
      */
     public function home(){
-        $prenoms=["paul"=>18,"jean"=>29,"rémi"=>59];
+        // $prenoms=["paul"=>18,"jean"=>29,"rémi"=>59];
 
         return $this->render(
-            "home.html.twig",
-            [
-                'title'=>'Bonjour à tous', 
-                'age'=>14,
-                'tableau'=>$prenoms
-            ]
+            "home.html.twig"
         );
     }
     
 }
+
+// return $this->render(
+//     "home.html.twig",
+//     [
+//         'title'=>'Bonjour à tous', 
+//         'age'=>14,
+//         'tableau'=>$prenoms
+//     ]
+// );
     
 
 ?>
