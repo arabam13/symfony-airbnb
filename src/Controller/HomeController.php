@@ -8,7 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class HomeController extends Controller {
 
-    /**
+ /**
      * Fonction qui affiche bonjour
      * @Route("/hello/{prenom}/age/{age}", name="hello_a", requirements={"age"="\d+"})
      * @Route("/bonjour", name="hello_base")

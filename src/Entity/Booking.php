@@ -34,7 +34,7 @@ class Booking
      * @ORM\Column(type="datetime")
      * @Assert\Date()
      * @Assert\GreaterThan("today", message="la date d'arrivé doit être 
-     *                          ultérieure à la date d'aujoud'hui!")
+     *                          ultérieure à la date d'aujoud'hui!", groups={"front"})
      */
     private $startDate;
 
@@ -64,6 +64,7 @@ class Booking
     /**
      * Callback qui faut appeler à chaque reservation
      * @ORM\PrePersist
+     * @ORM\PreUpdate
      * @return void
      */
     public function prePersist(){
@@ -93,6 +94,8 @@ class Booking
 
         foreach ($days as $day){
             if (array_search($day, $notAvailable) !== false) return false;
+            // si la fonction array_search trouve l'element recherchédans le tableau,
+            // celle-ci renvoie un indice, sinon false
         }
 
         return true;

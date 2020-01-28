@@ -9,22 +9,46 @@
 
 {% block body %}
     <div class="container">
-        <h1>Créer une nouvelle annonce</h1>
+        <h1 class="my-5">Créer une nouvelle annonce</h1>
         {# {{ form(form) }} #}     
         {{form_start(form)}}
-        {# <div class="form-group">
-            {{form_label(form.title)}}
-            {{form_widget(form.title, {
-                                        'attr':{
-                                            'class':'form-control',
-                                            'placeholder':'Titre de l\'annonce'
-                                            }
-                                      })
-            }}    
-        </div> #}
-        {{form_widget(form)}}
-        {# button:submit.btn.btn-primary #}
-        <button type="submit" class="btn btn-primary">Créer une annonce !</button>
+
+        <div class="row">
+            <div class="col">
+                <div class="alert alert-light">
+                    <h2>Informations Générales :</h2>
+                    <hr>
+                    {{form_row(form.title)}}
+                    {{form_row(form.slug)}}
+                    {{form_row(form.price)}}
+                    {{form_row(form.rooms)}}               
+                </div>
+                <div class="alert alert-light">
+                    <h2>Détails de l'annonce :</h2>
+                    {{form_row(form.introduction)}}
+                    {{form_row(form.content)}}
+                </div>
+            </div>
+            <div class="col">
+                <div class="alert alert-light">
+                    <h2>Images de l'annonce :</h2>
+                    <hr>
+                    {{form_row(form.coverImage)}}
+                    {{form_row(form.images)}}
+                </div>
+            </div>
+        </div>
+        {# {{form_widget(form)}} #}
+
+        <div class="alert alert-success clearfix">
+            <h2>Sauvegarder mon annonce</h2>
+            <p>Vous êtes sur le point de créer une annonce !</p>
+            {# button:submit.btn.btn-primary #}
+            <button type="submit" class="btn btn-primary float-right">
+                <i class="fas fa-check"></i>
+                Créer une annonce 
+            </button>
+        </div>
 
         {{form_end(form)}}
     </div>
@@ -37,6 +61,16 @@
 
 {% endblock %}
 
+{# <div class="form-group">
+    {{form_label(form.title)}}
+    {{form_widget(form.title, {
+                                'attr':{
+                                    'class':'form-control',
+                                    'placeholder':'Titre de l\'annonce'
+                                    }
+                                })
+    }}    
+</div> #}
 
 {# {% block form_row %}
     {{dump()}}  c'est pour faire afficher les variables locales

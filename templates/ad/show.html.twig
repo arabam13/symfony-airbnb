@@ -13,7 +13,7 @@
             <h1>{{ad.title}}</h1>
             <p>{{ad.introduction}}</p>
             <p class="h3">
-                <strong>{{ad.rooms}} chambres </strong> pour <strong>{{ad.price}} &euro;</strong>
+                <strong>{{ad.rooms}} chambres </strong> pour <strong>{{ad.price | number_format(2, ',', ' ') }} &euro;</strong>
             </p>
 
             <a href="{{ path('booking_create', {slug:ad.slug}) }}" class="btn btn-primary">Reserver!</a>
@@ -65,13 +65,48 @@
                         <span class="sr-only">Next</span>
                     </a>
                 </div>
+
+                <hr>
+
+                {% if ad.comments | length > 0 %}
+                    <h2 class="mb-3">Commentaires de nos voyageurs:</h1>
+                    <div class="alert alert-info">
+                        <div class="alert-heading text-center">
+                            <div class="row align-items-center">
+                                <div class="col">
+                                    <h4>Note globale donnée par nos voyageurs</h4>  
+                                </div>
+                                <div class="col">
+                                    {% include 'partials/rating.html.twig' with {rating:ad.avgRatings} %}
+                                    <br>
+                                    (Claculée sur <strong>{{ad.comments | length }}</strong> avis !) 
+                                </div>     
+                            </div>
+                        </div>
+                    </div>
+
+
+                    {% for comment in ad.comments %}
+                        <strong>{{ comment.author.fullName }}</strong> a dit :
+                        <blockquote>
+                            {{comment.content}}
+                        </blockquote>
+                        Note donnée est :
+                        {# {% set rating = comment.rating %} #}
+                        {% include 'partials/rating.html.twig' with {rating:comment.rating} %}
+                        <br><br>
+                    {% endfor %}
+                {% else %}
+                    <h2>Cette annonce n'a pas reçu de commentaires...</h2>
+                {% endif %}
             </div>
             <div class="col">
                 {% set a = ad.author %}
                 <div class="row">
                     <div class="col-md-3">
                         <a href="{{path('user_show', {slug:a.slug})}}">
-                              <img src="{{a.picture}}" alt="Avatar de {{a.fullName}}" class="avatar avatar-medium">
+                              <img src="{{a.picture}}" alt="Avatar de {{a.fullName}}" 
+                                    class="avatar avatar-medium">
                         </a>
                    </div>
 
