@@ -3,8 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Ad;
+use App\Entity\Booking;
 use App\Form\AnnonceType;
 use App\Repository\AdRepository;
+use App\Service\PaginationService;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,13 +15,31 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class AdminAdController extends AbstractController
 {
+    // @Route("/admin/ads/{page}", name="admin_ads_index", requirements={"page":"\d+"})
+    
     /**
-     * @Route("/admin/ads", name="admin_ads_index")
+     *  @Route("/admin/ads/{page<\d>?1}", name="admin_ads_index")
      */
-    public function index(AdRepository $repo)
+    public function index(AdRepository $repo, $page, PaginationService $pagination)
     {
+        // $limit = 10;
+
+        // $start = $page * $limit - $limit;
+               // 1 * 10 = 10 - 10 = 0
+               // 2 * 10 = 20 -10 = 10
+
+        // $total_enreg = count($repo->findAll());
+        // $pages = ceil($total_enreg / $limit);
+        
+        $pagination->setEntityClass(Ad::class)
+                    ->setPage($page);
+                    // ->setRoute('admin_ads_index');
         return $this->render('admin/ad/index.html.twig', [
-            'ads' => $repo->findAll(),
+            // // 'ads' => $repo->findAll(),
+            // 'ads' => $repo->findBy([], [], $limit, $start),  // (tableau de critere de recherche, t. ordre, nombre d'enregistrements, à partir de 0)
+            // 'pages' => $pages,
+            // 'page' => $page
+            'pagination'=>$pagination
         ]);
     }
 
