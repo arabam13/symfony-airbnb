@@ -7,8 +7,9 @@ use App\Entity\Booking;
 use App\Form\AnnonceType;
 use App\Repository\AdRepository;
 use App\Service\PaginationService;
+use Doctrine\ORM\EntityManagerInterface;
+// use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\HttpFoundation\Request;
-use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -49,7 +50,7 @@ class AdminAdController extends AbstractController
      * @param Ad $ad
      * @return Response
      */
-    public function edit (Ad $ad, Request $request, ObjectManager $manager){
+    public function edit (Ad $ad, Request $request, EntityManagerInterface $manager){
         $form = $this->createForm(AnnonceType::class, $ad);
 
         $form->handleRequest($request);
@@ -75,10 +76,10 @@ class AdminAdController extends AbstractController
      * Permet de supprimer une annonce
      * @Route("admin/ads/{id}/delete", name="admin_ads_delete")
      * @param Ad $ad
-     * @param ObjectManager $manager
+     * @param EntityManagerInterface $manager
      * @return Response
      */
-    public function delete(Ad $ad, ObjectManager $manager){
+    public function delete(Ad $ad, EntityManagerInterface $manager){
         if (count($ad->getBookings()) > 0){
             $this->addFlash(
                 'warning',

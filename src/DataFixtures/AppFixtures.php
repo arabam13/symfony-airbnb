@@ -11,6 +11,7 @@ use App\Entity\User;
 use App\Entity\Image;
 use App\Entity\Booking;
 use App\Entity\Comment;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;

@@ -6,8 +6,9 @@ use App\Entity\Booking;
 use App\Form\AdminBookingType;
 use App\Service\PaginationService;
 use App\Repository\BookingRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
-use Doctrine\Common\Persistence\ObjectManager;
+// use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
@@ -34,10 +35,10 @@ class AdminBookingController extends AbstractController
      * @Route("/admin/bookings/{id}/edit", name="admin_booking_edit")
      * @param Booking $booking
      * @param Request $request
-     * @param ObjectManager $manager
+     * @param EntityManagerInterface $manager
      * @return Response
      */
-    public function edit(Booking $booking, Request $request , ObjectManager $manager){
+    public function edit(Booking $booking, Request $request , EntityManagerInterface $manager){
 
         $form = $this->createForm(AdminBookingType::class, $booking);
 
@@ -67,10 +68,10 @@ class AdminBookingController extends AbstractController
      * Permet de supprimer une reservation
      * @Route("/admin/bookings/{id}/delete", name="admin_booking_delete")
      * @param Comment $comment
-     * @param ObjectManager $manager
+     * @param EntityManagerInterface $manager
      * @return Response
      */
-    public function delete(Booking $booking, ObjectManager $manager){
+    public function delete(Booking $booking, EntityManagerInterface $manager){
         $manager->remove($booking);
         $manager->flush();
 

@@ -6,8 +6,9 @@ use App\Entity\Ad;
 use App\Entity\Image;
 use App\Form\AnnonceType;
 use App\Repository\AdRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
-use Doctrine\Common\Persistence\ObjectManager;
+// use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -40,7 +41,7 @@ class AdController extends Controller
      * @IsGranted("ROLE_USER")
      * @return Response
      */
-    public function create(Request $request, ObjectManager $manager){
+    public function create(Request $request, EntityManagerInterface $manager){
         $ad = new Ad();
 
         // $image = new Image();
@@ -88,7 +89,7 @@ class AdController extends Controller
      *              message="Vous n'etes pas le créateur de l'annonce. Vous ne pouvez la modifier.")
      * @return Response
      */
-    public function edit(Ad $ad, Request $request, ObjectManager $manager){
+    public function edit(Ad $ad, Request $request, EntityManagerInterface $manager){
 
         $form = $this->createForm(AnnonceType::class, $ad);
         $form->handleRequest($request);
@@ -145,7 +146,7 @@ class AdController extends Controller
      * @param ObjectManager $manager
      * @return Response
      */
-    public function delete(Ad $ad, ObjectManager $manager){
+    public function delete(Ad $ad, EntityManagerInterface $manager){
         $manager->remove($ad);
         $manager->flush();
 
