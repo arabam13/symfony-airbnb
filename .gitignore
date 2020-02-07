@@ -6,6 +6,9 @@
 /public/bundles/
 /var/
 /vendor/
+
+### fichier de deploiement de l'appli en prod à ignorer ###
+deploy.bat
 ###< symfony/framework-bundle ###
 
 ###> symfony/phpunit-bridge ###
