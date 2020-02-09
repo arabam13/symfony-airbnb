@@ -8,6 +8,7 @@ use App\Entity\PasswordUpdate;
 use App\Form\RegistrationType;
 use App\Form\PasswordUpdateType;
 use Symfony\Component\Form\FormError;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\HttpFoundation\Response;
@@ -51,7 +52,7 @@ class AccountController extends AbstractController
      * @Route("/register", name="account_register")
      * @return Response
      */
-    public function register(Request $request, ObjectManager $manager, UserPasswordEncoderInterface $encoder){
+    public function register(Request $request, EntityManagerInterface $manager, UserPasswordEncoderInterface $encoder){
 
         $user= new User();
         $form= $this->createForm(RegistrationType::class, $user);
@@ -85,7 +86,7 @@ class AccountController extends AbstractController
      * @IsGranted("ROLE_USER")
      * @return Response
      */
-    public function profile(Request $request, ObjectManager $manager){
+    public function profile(Request $request, EntityManagerInterface $manager){
 
         $user = $this->getUser();
         $form = $this->createForm(AccountType::class, $user);
@@ -115,7 +116,7 @@ class AccountController extends AbstractController
      * @IsGranted("ROLE_USER")
      * @return Response
      */
-    public function updatePassword(Request $request, ObjectManager $manager, UserPasswordEncoderInterface $encoder){
+    public function updatePassword(Request $request, EntityManagerInterface $manager, UserPasswordEncoderInterface $encoder){
 
         
         $passwordUpdate= new PasswordUpdate();
