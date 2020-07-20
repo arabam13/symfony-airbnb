@@ -1,6 +1,8 @@
-var $ = require('jquery');
+let $ = require('jquery')
+import '../css/app.css';
+import './ad.js';
 
-global.$ = global.jQuery = $;
+// global.$ = global.jQuery = $;
 
-require('./popper.min.js');
-require('./bootstrap.min.js');
+// require('./popper.min.js');
+// require('./bootstrap.min.js');

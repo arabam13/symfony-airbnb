@@ -12,7 +12,7 @@ Encore
     // public path used by the web server to access the output path
     .setPublicPath('/build')
     // only needed for CDN's or sub-directory deploy
-    .setManifestKeyPrefix('build/')
+    // .setManifestKeyPrefix('build/')
 
     /*
      * ENTRY CONFIG
@@ -23,12 +23,12 @@ Encore
      * Each entry will result in one JavaScript file (e.g. app.js)
      * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
      */
-    .addStyleEntry('css/app', './assets/css/app.css')
+    // .addStyleEntry('css/app', './assets/css/app.css')
     // .addStyleEntry('css/bootstrap', './assets/css/bootstrap.min.css')
 
      //.addEntry('page1', './assets/js/page1.js')
-    .addEntry('js/app', './assets/js/app.js')
-    .addEntry('js/ad', './assets/js/ad.js')
+    .addEntry('app', './assets/js/app.js')
+    // .addEntry('js/ad', './assets/js/ad.js')
    
     //.addEntry('page2', './assets/js/page2.js')
 
@@ -76,4 +76,10 @@ Encore
     //.addEntry('admin', './assets/js/admin.js')
 ;
 
-module.exports = Encore.getWebpackConfig();
+// module.exports = Encore.getWebpackConfig();
+
+var config = Encore.getWebpackConfig();
+
+config.externals.jquery = 'jQuery'
+
+module.exports = config
